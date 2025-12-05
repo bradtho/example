@@ -1,5 +1,7 @@
 steps:
-  - command: "go build -o -o ./hello/hello ./hello"
+  - commands:
+      - ls -al 
+      - "go build -o -o ./hello/hello ./hello"
     artifact_paths: "./hello/hello"
     plugins:
       - ssh://git@github.com/compono/podman-buildkite-plugin.git#v1.0.0:
