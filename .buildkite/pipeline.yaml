@@ -3,7 +3,7 @@ steps:
     key: build
     commands:
       - ls -al 
-      - "go build -o -o ./hello/hello ./hello"
+      - "go build -o ./hello/hello ./hello"
     artifact_paths: "./hello/hello"
     plugins: 
       - docker#v5.13.0:
