@@ -5,8 +5,8 @@ steps:
       - ls -al 
       - "go build -o -o ./hello/hello ./hello"
     artifact_paths: "./hello/hello"
-    plugins: 
-      - docker#v5.13.0:
+    plugins:
+      - ssh://git@github.com/compono/podman-buildkite-plugin.git#v1.0.0:
           image: golang:1.25.5
 
   - label: block
