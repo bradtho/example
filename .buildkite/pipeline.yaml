@@ -2,7 +2,6 @@ steps:
   - label: ":golang: build"
     key: build
     commands:
-      - ls -al 
       - "go build -o ./hello/hello ./hello"
     artifact_paths: "./hello/hello"
     plugins: 
@@ -21,8 +20,8 @@ steps:
   - label: run
     command:
       - buildkite-agent artifact download "hello/hello" .
-      - chmod +x ./hello
-      - ls -al
+      - chmod +x ./hello/hello
+      - ls -al ./hello/hello
       - ./hello/hello $(buildkite-agent meta-data get "name")
     depends_on:
       - block
