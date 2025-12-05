@@ -1,0 +1,23 @@
+steps:
+  - command: "go build -o dist/my-app ."
+    artifact_paths: "./dist/my-app"
+    plugins:
+      - ssh://git@github.com/compono/podman-buildkite-plugin.git#v1.0.0:
+          image: "golang:1.25.5"
+
+  - label: block
+    key: block
+    block: "Block Step"
+    prompt: "Enter your name"
+    fields:
+      - text: "name"
+        key: "name"
+    depends_on: ["build"]
+
+  - label: run
+    command:
+      - buildkite-agent artifact download "./dist/my-app" .
+      - chmod +x ./hello/hello
+      - ./hello/hello $(buildkite-agent meta-data get "name")
+    depends_on:
+      - block
