@@ -1,6 +1,6 @@
 steps:
-  - command: "go build -o dist/my-app ."
-    artifact_paths: "./dist/my-app"
+  - command: "go build -o -o ./hello/hello ./hello"
+    artifact_paths: "./hello/hello"
     plugins:
       - ssh://git@github.com/compono/podman-buildkite-plugin.git#v1.0.0:
           image: "golang:1.25.5"
@@ -16,7 +16,7 @@ steps:
 
   - label: run
     command:
-      - buildkite-agent artifact download "./dist/my-app" .
+      - buildkite-agent artifact download "./hello/hello" .
       - chmod +x ./hello/hello
       - ./hello/hello $(buildkite-agent meta-data get "name")
     depends_on:
