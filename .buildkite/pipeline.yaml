@@ -2,7 +2,7 @@ steps:
   - label: ":golang: build"
     key: build
     commands:
-      - "go build -o ./hello/hello ./hello"
+      - "GOOS=darwin GOARCH=arm64 go build -o ./hello/hello ./hello"
     artifact_paths: "./hello/hello"
     plugins: 
       - docker#v5.13.0:
