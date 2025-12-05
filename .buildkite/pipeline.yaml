@@ -21,7 +21,6 @@ steps:
     command:
       - buildkite-agent artifact download "hello/hello" .
       - chmod +x ./hello/hello
-      - ls -al ./hello/hello
       - ./hello/hello $(buildkite-agent meta-data get "name")
     depends_on:
       - block
